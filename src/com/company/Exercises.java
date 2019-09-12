@@ -50,9 +50,13 @@ public class Exercises {
         double bgn_to_dkk = x * 3.82;
         double dkk_to_bgn = x / 3.82;
         String bgn, dkk, sorm;
+        //another example of using an array. See how much more compact it is, on top of that it's faster to compile than if you had 4 strings
+        //it doesn't really matter in projects of this small scope, but it does when the compiler needs to go through 5000 lines of code, rather
+        //than 50
         String[] smterms = {"Bulgarian lev", "Bulgarian leva", "Danish krone", "Danish kroner"};
 
-        //this trash-can formats the output of the double so that it doesn't print out 3 million decimals (19.99999999999999999999999 turns into 19.99)
+        //this trash-can formats the output of the double so that it doesn't print out 3 million decimals (19.99999999999999999999999 turns
+        // into 19.99)
         DecimalFormat numberFormat = new DecimalFormat("#.00");
 
         //this is purely for the formatting of the sentence, as in it will say "1 leva" instead of "1 lev" without it
