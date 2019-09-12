@@ -1,5 +1,7 @@
 package com.company;
 
+import java.text.DecimalFormat;
+
 public class Exercises {
     String a = "there";
     String b = "be";
@@ -47,11 +49,13 @@ public class Exercises {
     public void Exercise03b(double x, String currency) {
         double bgn_to_dkk = x * 3.82;
         double dkk_to_bgn = x / 3.82;
-        String bgn;
-        String dkk;
-        String sorm;
+        String bgn, dkk, sorm;
         String[] smterms = {"Bulgarian lev", "Bulgarian leva", "Danish krone", "Danish kroner"};
 
+        //this trash-can formats the output of the double so that it doesn't print out 3 million decimals (19.99999999999999999999999 turns into 19.99)
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+        //this is purely for the formatting of the sentence, as in it will say "1 leva" instead of "1 lev" without it
         if (x == 1) {
             bgn = smterms[0];
             dkk= smterms[2];
@@ -65,14 +69,16 @@ public class Exercises {
 
         //never use == to compare strings, since == only works if you've pre-defined your strings, equals() checks if every letter from string 1
         //checks out with every letter from string 2
+        //IgnoreCase ignores whether the letters are capital or not when comparing the strings
         if (currency.equalsIgnoreCase("dkk")) {
-            System.out.println(x + " " +  dkk + sorm + " equivalent to " + dkk_to_bgn + " " + bgn);
+            System.out.println(x + " " +  dkk + sorm + " equivalent to " + numberFormat.format(dkk_to_bgn) + " " + bgn);
         }
 
         else if (currency.equalsIgnoreCase("bgn")) {
-            System.out.println(x + " " +  bgn + sorm  + " equivalent to " + bgn_to_dkk + " " + dkk);
+            System.out.println(x + " " +  bgn + sorm  + " equivalent to " + numberFormat.format(bgn_to_dkk) + " " + dkk);
         }
 
+        //this is known as a fallback case, aka if no cases are true, it will display this, rather than cause an error
         else {
             System.out.println("We do not support this currency");
         }
